@@ -15,13 +15,15 @@ class Main{
         int opcao;
         TranformaEntrada tranformaEntrada = new TranformaEntrada(moedas);
 
-        do {
+        while (true) {
             for (int i = 0; i < moedas.size(); i++ ){
                 IO.println(String.format("%d - BRL =>> %s", i+1, moedas.get(i)));
             }
             IO.println("0 - Sair do sistema");
 
             opcao = tranformaEntrada.validaEntrada(scanner.next());
+            if (opcao == 0){break;}
+
             moeda = tranformaEntrada.capturaMoeda(opcao);
 
             if (moeda.isBlank()){
@@ -34,8 +36,7 @@ class Main{
             valor = scanner.nextLong();
             IO.println(String.format("Isso vai dar %.2f %s", Cotacao.converte(valor, moeda), moeda));
             pause();
-
-        } while (opcao != 7);
+        }
 
     }
 
